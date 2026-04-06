@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ترجمة لغة الإشارة - ثانوية التاسعة عشر</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- العنوان -->
+        <header class="header">
+            <h1>🤟 تطبيق ترجمة لغة الإشارة</h1>
+            <p class="subtitle">اصنع جملتك بيديك - تقنية ذكية من ثانوية التاسعة عشر</p>
+        </header>
+
+        <!-- قسم الكاميرا والنتيجة -->
+        <div class="main-section">
+            <!-- الكاميرا -->
+            <div class="camera-section">
+                <h2>📹 الكاميرا</h2>
+                <div class="video-container">
+                    <video id="webcam" autoplay playsinline></video>
+                    <canvas id="canvas"></canvas>
+                    <div class="detection-status" id="detectionStatus">
+                        <span class="status-indicator"></span>
+                        <span class="status-text">جاهز للكشف</span>
+                    </div>
+                </div>
+                
+                <!-- أزرار التحكم -->
+                <div class="camera-controls">
+                    <button id="startBtn" class="btn btn-start">
+                        🎥 تشغيل الكاميرا
+                    </button>
+                    <button id="stopBtn" class="btn btn-stop" disabled>
+                        ⏹️ إيقاف
+                    </button>
+                </div>
+            </div>
+
+            <!-- الحرف المكتشف -->
+            <div class="detection-section">
+                <h2>✨ الحرف المكتشف</h2>
+                <div id="currentLetter" class="current-letter">
+                    <span class="waiting-text">في انتظار الكاميرا...</span>
+                </div>
+                <div id="confidence" class="confidence-bar">
+                    <div class="confidence-fill"></div>
+                    <span class="confidence-text">0%</span>
+                </div>
+                <p class="detection-hint">اثبت يدك لمدة 2 ثانية لإضافة الحرف تلقائياً</p>
+            </div>
+        </div>
+
+        <!-- الجملة المركبة -->
+        <div class="sentence-section">
+            <div class="sentence-header">
+                <h2>📝 جملتك</h2>
+                <div class="sentence-actions">
+                    <button id="speakBtn" class="btn-icon" title="اقرأ الجملة" disabled>
+                        🔊
+                    </button>
+                    <button id="saveBtn" class="btn-icon" title="احفظ الجملة" disabled>
+                        💾
+                    </button>
+                    <button id="clearBtn" class="btn-icon" title="امسح الجملة" disabled>
+                        🗑️
+                    </button>
+                </div>
+            </div>
+            <div id="sentence" class="sentence-display">
+                <span class="empty-sentence">ابدأ بتكوين جملتك...</span>
+            </div>
+            
+            <!-- حركات خاصة -->
+            <div class="special-gestures">
+                <div class="gesture-item">
+                    <span class="gesture-icon">✋➡️✊</span>
+                    <span class="gesture-label">مسافة</span>
+                </div>
+                <div class="gesture-item">
+                    <span class="gesture-icon">✊➡️✋</span>
+                    <span class="gesture-label">حذف آخر حرف</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- الجمل المحفوظة -->
+        <div class="saved-section" id="savedSection" style="display: none;">
+            <h2>📚 الجمل المحفوظة</h2>
+            <div id="savedList" class="saved-list"></div>
+        </div>
+
+        <!-- دليل الحروف -->
+        <div class="guide-section">
+            <button id="toggleGuide" class="btn btn-guide">
+                📖 دليل الحروف المصور (28 حرف)
+            </button>
+            <div id="guideContent" class="guide-content">
+                <h3>دليل حركات اليد بالتفصيل</h3>
+                <div class="letters-guide" id="lettersGuide">
+                    <!-- سيتم إضافة الحروف ديناميكياً بالجافاسكريبت -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة © 2026 - ثانوية التاسعة عشر</p>
+        <p class="footer-subtitle">مشروع تقنية ذكية لخدمة ذوي الاحتياجات الخاصة</p>
+    </footer>
+
+    <!-- المكتبات -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    
+    <!-- الكود الرئيسي -->
+    <script src="app.js"></script>
+</body>
